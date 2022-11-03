@@ -48,20 +48,21 @@ end
 # get each word
 def decode_morse_words(codes)
   codelist = codes.split
-
-  word = codelist.map { |code|
-    decode_char(code)
-  }
-  word.join
+  word = ''
+  codelist.each do |char|
+    word += decode_char(char)
+  end
+  word
 end
 
 # combine words in message
 def morse_message(code)
   codelist = code.split('  ')
-  message = codelist.map { |code|
-    decode_morse_words(code)
-  }
-  message.join(' ')
+  message = ''
+  codelist.each do |char|
+    message += decode_morse_words(char).concat(' ')
+  end
+  message
 end
 
 # Returns A BOX FULL OF RUBIES
